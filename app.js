@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const authRoutes = require('./routes/authRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -8,18 +9,21 @@ const PORT = process.env.PORT || 3000;
 
 // middleware
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
 
 // view engine
 app.set('view engine', 'ejs');
 
 // Routes
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', { title: "Home" });
 });
 
 app.get('/smoothie', (req, res) => {
-    res.render('smoothies');
+    res.render('smoothies', { title: "Smoothies" });
 });
+
+app.use(authRoutes);
 
 // database connection 
 mongoose.connect(process.env.DBURI, {
