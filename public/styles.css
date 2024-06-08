@@ -60,6 +60,11 @@ nav li a {
   letter-spacing: 2px;
 }
 
+.btn.logout {
+  border-radius: 36px;
+  background: #FFBAB6;
+}
+
 .btn {
   border-radius: 36px;
   background: #FEE996;
